@@ -11,7 +11,7 @@
 7. Removed now-unused CC BY-NC 4.0 and FISH AUDIO RESEARCH LICENSE rows from license source links
 8. Removed OpenCode from coding agents section
 9. Added Pi and DeepSeek Harness to coding agents section
-10. Removed open-webui and the now-empty "Others/其它" section, including its TOC entries
+10. Removed open-webui and the "Others/其它" section, including its TOC entries; relocated the light-ocr row (added upstream in 20260722) to a new "OCR" subsection under AI Tools
 11. Added Agent Skills to the protocols section
 12. Replaced the redis entry with Valkey in the KV-Cache section
 13. Added ClickHouse to the data storage and caching section
@@ -19,6 +19,10 @@
 15. Removed ffmpeg-go and the now-empty "Toolkits/工具库" section, including its TOC entries
 16. Added vLLM, SGLang and LMDeploy to the model training and inference tools section
 17. Added FFmpeg to a new language-neutral "Toolkits/工具库" section under Infrastructure, with an LGPL 2.1+ / GPL 2.0+ row in license source links
+
+## 20260722
+
+1. Added light-ocr to AI tools in both English and Chinese READMEs
 
 ## 20260608
 

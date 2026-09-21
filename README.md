@@ -36,6 +36,7 @@ This project uses AI tools to assist with documentation editing. All project sel
       * [Voice Conversion](#voice-conversion)
       * [Text to Speech](#text-to-speech)
     * [Coding Agents](#coding-agents)
+    * [OCR](#ocr)
 * [Infrastructure](#infrastructure)
   * [Access Control](#access-control)
   * [Network Control](#network-control)
@@ -156,6 +157,12 @@ Multimodal models are usually extended from large language models.
 | --------------------------------------------------------------------------------------------------------------------------------- | -------------- | ---------------------------------------------- | ------------------------------------ |
 | Pi is an AI agent toolkit and coding-agent harness; its TypeScript monorepo splits a unified multi-provider LLM API, agent runtime, differential-rendering TUI, and coding agent CLI into separate packages. | AI Coding Agent | [pi](https://github.com/earendil-works/pi) | [MIT](#protocol-document-links) |
 | DeepSeek's open-source agent harness (CLI: dsh) built on an everything-is-a-plugin architecture, with a built-in web UI and a plugin ecosystem tracked via the dsh-plugin topic. | AI Coding Agent | [deepseek-harness](https://github.com/deepseek-ai/deepseek-harness) | [MIT](#protocol-document-links) |
+
+### OCR
+
+| Project Summary | Main Features | Link (Click to Visit) | License |
+| --------------- | ------------- | --------------------- | ------- |
+| light-ocr is a fast offline OCR toolkit for Node.js and C++, using PP-OCRv6 with a bundled OCR runtime and optional Core ML and WebGPU hardware acceleration. | OCR | [light-ocr](https://github.com/arcships/light-ocr) | [Apache 2.0](#protocol-document-links) |
 
 # Infrastructure
 

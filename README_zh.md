@@ -36,6 +36,7 @@
       * [音色转换](#音色转换)
       * [文字转语音](#文字转语音)
     * [编码代理](#编码代理)
+    * [OCR](#ocr)
 * [基础设施](#基础设施)
   * [权限控制](#权限控制)
   * [网络控制](#网络控制)
@@ -156,6 +157,12 @@
 | --------------------------------------------------------------------------------------------------------------------------------------------- | -------- | --------------------------------------------------- | ------------------------------------- |
 | Pi 是 AI 代理工具集与编码代理 harness，TypeScript monorepo 将统一多提供商 LLM API、代理运行时、差分渲染 TUI 与编码代理 CLI 拆分为独立包。 | AI编码代理 | [pi](https://github.com/earendil-works/pi) | [MIT](#Protocol-document-link) |
 | DeepSeek 开源的代理 harness（CLI 为 dsh），采用一切皆插件的架构，内置 Web UI，插件生态经 dsh-plugin 主题聚合。 | AI编码代理 | [deepseek-harness](https://github.com/deepseek-ai/deepseek-harness) | [MIT](#Protocol-document-link) |
+
+### OCR
+
+| 项目简要 | 主要功能 | 地址（点击访问） | 使用许可证 |
+| -------- | -------- | ---------------- | ---------- |
+| light-ocr 是面向 Node.js 与 C++ 的快速离线 OCR 工具包，基于 PP-OCRv6 与自带 OCR 运行时，并可选使用 Core ML 和 WebGPU 硬件加速。 | OCR | [light-ocr](https://github.com/arcships/light-ocr) | [Apache 2.0](#Protocol-document-link) |
 
 # 基础设施
 
