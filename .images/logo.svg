@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-labelledby="opTitle">
+  <title id="opTitle">open-power</title>
+  <style>
+    svg { --op-ink: #0f172a; --op-bolt: #d97706; }
+    @media (prefers-color-scheme: dark) {
+      svg { --op-ink: #e6edf3; --op-bolt: #fbbf24; }
+    }
+    .op-frame { fill: none; stroke: var(--op-ink); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+    .op-bolt { fill: var(--op-bolt); }
+  </style>
+  <path class="op-frame" d="M20 6h24a14 14 0 0 1 14 14v6M58 38v6a14 14 0 0 1-14 14H20A14 14 0 0 1 6 44V20A14 14 0 0 1 20 6"/>
+  <polygon class="op-bolt" points="38,16 21,35 31,35 25,49 43,28 35,28"/>
+</svg>

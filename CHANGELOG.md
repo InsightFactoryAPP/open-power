@@ -19,6 +19,7 @@
 15. Removed ffmpeg-go and the now-empty "Toolkits/工具库" section, including its TOC entries
 16. Added vLLM, SGLang and LMDeploy to the model training and inference tools section
 17. Added FFmpeg to a new language-neutral "Toolkits/工具库" section under Infrastructure, with an LGPL 2.1+ / GPL 2.0+ row in license source links
+18. Replaced the README logo with a newly drawn SVG (.images/logo.svg), removing the old WebP version
 
 ## 20260722
 
