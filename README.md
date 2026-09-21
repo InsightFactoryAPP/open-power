@@ -36,7 +36,7 @@ This project uses AI tools to assist with documentation editing. All project sel
       * [Voice Conversion](#voice-conversion)
       * [Text to Speech](#text-to-speech)
     * [Coding Agents](#coding-agents)
-    * [Others](#others)
+    * [OCR](#ocr)
 * [Infrastructure](#infrastructure)
   * [Access Control](#access-control)
   * [Network Control](#network-control)
@@ -44,6 +44,7 @@ This project uses AI tools to assist with documentation editing. All project sel
   * [Delivery and Image Building](#delivery-and-image-building)
     * [CD](#cd)
     * [Container Capabilities](#container-capabilities)
+  * [Toolkits](#toolkits)
 * [Language Capabilities](#language-capabilities)
   * [Cross-Language Frameworks](#cross-language-frameworks)
     * [RPC](#rpc)
@@ -56,7 +57,6 @@ This project uses AI tools to assist with documentation editing. All project sel
     * [AI Capabilities](#ai-capabilities-1)
       * [LLM Application Frameworks](#llm-application-frameworks-1)
     * [Basic Capabilities](#basic-capabilities)
-    * [Toolkits](#toolkits)
     * [HTTP](#http)
       * [Server](#server)
       * [Client](#client)
@@ -98,15 +98,13 @@ Multimodal models are usually extended from large language models.
 | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | --------------------------------------- |
 | Stable Diffusion v1-5 is an image generation base model compatible with WebUI, ComfyUI, LoRA, and ControlNet workflows.           | [stable-diffusion v1-5](https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5)     | [CreativeML Open RAIL-M](#protocol-document-links)   |
 | Stable Diffusion XL Base 1.0 is a high-resolution image generation base model compatible with common SDXL tooling and workflows.   | [stable-diffusion-xl-base-1.0](https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0) | [CreativeML Open RAIL++-M](#protocol-document-links) |
-| HunyuanImage-3.0 is a native multimodal autoregressive image generation model requiring substantial compute resources.             | [HunyuanImage-3.0](https://github.com/Tencent-Hunyuan/HunyuanImage-3.0)                         | [Proprietary License](https://github.com/Tencent-Hunyuan/HunyuanImage-3.0/blob/main/LICENSE) |
-| HiDream-I1 is a 17B-parameter text-to-image foundation model using Sparse DiT architecture, supporting bilingual prompts, with Full / Dev / Fast variants. | [HiDream-I1](https://github.com/HiDream-ai/HiDream-I1)                                          | [MIT](#protocol-document-links)                      |
+| Alibaba's unified text-to-image generation and image editing model, with a 7B-parameter visual component built on 32 single-stream DiT layers, supporting text rendering, native RGBA transparent generation, and editing with up to 10 reference images, at resolutions up to 2752×1536. | [Qwen-Image-2.1](https://huggingface.co/Qwen/Qwen-Image-2.1) | [Qwen Research License](#protocol-document-links) |
 
 ##### Video Generation
 
 | Project Summary                                                        | Link (Click to Visit)               | License                              |
 | ---------------------------------------------------------------------- | ----------------------------------- | ------------------------------------ |
-| Alibaba's open-source video generation model family, available in multiple variants. | [Wan-Video](https://github.com/Wan-Video) | [Apache 2.0](#protocol-document-links) |
-| LTX-Video is a DiT-based video generation model supporting image-to-video, multi-keyframe conditioning, video extension, and video-to-video transformations, with up to 4K resolution at 50 FPS. | [LTX-Video](https://github.com/Lightricks/ltx-video) | [Apache 2.0](#protocol-document-links) |
+| MiniMax's synchronized audio-video generation model built on a 33B-parameter dense single-stream Transformer, supporting text-to-video, first/last-frame-to-video, and omni-reference conditioning with up to 12 mixed reference files, outputting 4–15 seconds at 24 FPS up to 2K resolution, with dialogue support in 11 languages. | [MiniMax-H3](https://huggingface.co/MiniMaxAI/MiniMax-H3) | [MiniMax H3 Community License](#protocol-document-links) |
 
 ## AI Protocols and Standards
 
@@ -117,6 +115,7 @@ Multimodal models are usually extended from large language models.
 | Model Context Protocol (MCP) is an open protocol for integrating LLM applications with external data sources and tools, defining a unified context exchange and client/server interaction model. | AI Protocol Standard | [MCP](https://github.com/modelcontextprotocol/modelcontextprotocol) | [MIT](#protocol-document-links)      |
 | Agent2Agent (A2A) is an open protocol enabling communication and interoperability between opaque agentic applications, allowing agents to discover capabilities and collaborate on long-running tasks. | AI Protocol Standard | [A2A](https://github.com/a2aproject/A2A) | [Apache 2.0](#protocol-document-links) |
 | Agent Client Protocol (ACP) standardizes communication between code editors and coding agents, providing SDKs in Kotlin, Java, Python, Rust, and TypeScript. | AI Protocol Standard | [ACP](https://github.com/agentclientprotocol/agent-client-protocol) | [Apache 2.0](#protocol-document-links) |
+| Agent Skills is an open specification, originally developed by Anthropic, for packaging agent capabilities: a skill is a folder containing a SKILL.md file with name/description metadata plus instructions, optionally bundling scripts, references, and assets, loaded via progressive disclosure across discovery, activation, and execution. | AI Protocol Standard | [Agent Skills](https://github.com/agentskills/agentskills) | [Apache 2.0](#protocol-document-links) |
 
 ## AI Workflows
 
@@ -150,22 +149,20 @@ Multimodal models are usually extended from large language models.
 
 | Project Summary                                          | Main Features  | Link (Click to Visit)                                     | License                              |
 | -------------------------------------------------------- | -------------- | --------------------------------------------------------- | ------------------------------------ |
-| An open-source project for text-to-speech generation.                          | Text-to-Speech | [GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS)      | [MIT](#protocol-document-links)      |
-| Voxtral-4B-TTS is Mistral's open-weight multilingual text-to-speech model supporting 9 languages and zero-shot voice cloning from 3 seconds of reference audio, with ~70 ms latency. | Text-to-Speech | [Voxtral-4B-TTS](https://huggingface.co/mistralai/Voxtral-4B-TTS-2603) | [CC BY-NC 4.0](#protocol-document-links) |
-| Fish Speech (Fish Audio S2 Pro) is a multilingual text-to-speech system with Dual-AR architecture and RL alignment, supporting natural language prosody control and multi-speaker generation across 80+ languages. | Text-to-Speech | [fish-speech](https://github.com/fishaudio/fish-speech) | [FISH AUDIO RESEARCH LICENSE](https://github.com/fishaudio/fish-speech/blob/main/LICENSE) |
+| Alibaba's open-source text-to-speech model built on Qwen3-TTS-Tokenizer-12Hz with a discrete multi-codebook LM and a lightweight non-DiT architecture, supporting zero-shot voice cloning from 3 seconds of reference audio, streaming generation with first-packet latency as low as 97 ms, and ten languages: Chinese, English, Japanese, Korean, German, French, Russian, Portuguese, Spanish, and Italian. | Text-to-Speech | [Qwen3-TTS-12Hz-1.7B-Base](https://huggingface.co/Qwen/Qwen3-TTS-12Hz-1.7B-Base) | [Apache 2.0](#protocol-document-links) |
 
 ### Coding Agents
 
 | Project Summary                                                                                                                   | Main Features  | Link (Click to Visit)                          | License                              |
 | --------------------------------------------------------------------------------------------------------------------------------- | -------------- | ---------------------------------------------- | ------------------------------------ |
-| OpenCode is an open-source AI coding agent focused on terminal workflows and client/server architecture for local and remote execution. | AI Coding Agent | [opencode](https://github.com/anomalyco/opencode) | [MIT](#protocol-document-links)      |
+| Pi is an AI agent toolkit and coding-agent harness; its TypeScript monorepo splits a unified multi-provider LLM API, agent runtime, differential-rendering TUI, and coding agent CLI into separate packages. | AI Coding Agent | [pi](https://github.com/earendil-works/pi) | [MIT](#protocol-document-links) |
+| DeepSeek's open-source agent harness (CLI: dsh) built on an everything-is-a-plugin architecture, with a built-in web UI and a plugin ecosystem tracked via the dsh-plugin topic. | AI Coding Agent | [deepseek-harness](https://github.com/deepseek-ai/deepseek-harness) | [MIT](#protocol-document-links) |
 
-### Others
+### OCR
 
-| Project Summary                                                                               | Main Features | Link (Click to Visit)                                  | License                              |
-| --------------------------------------------------------------------------------------------- | ------------- | ------------------------------------------------------ | ------------------------------------ |
-| light-ocr is a fast offline OCR toolkit for Node.js and C++, using PP-OCRv6 and ONNX Runtime with optional CoreML and WebGPU acceleration. | OCR | [light-ocr](https://github.com/arcships/light-ocr) | [Apache 2.0](#protocol-document-links) |
-| A ChatGPT-like web application for building a general-purpose chat UI on top of APIs.                | ChatGPT-like  | [open-webui](https://github.com/open-webui/open-webui) | [MIT](#protocol-document-links)      |
+| Project Summary | Main Features | Link (Click to Visit) | License |
+| --------------- | ------------- | --------------------- | ------- |
+| light-ocr is a fast offline OCR toolkit for Node.js and C++, using PP-OCRv6 with a bundled OCR runtime and optional Core ML and WebGPU hardware acceleration. | OCR | [light-ocr](https://github.com/arcships/light-ocr) | [Apache 2.0](#protocol-document-links) |
 
 # Infrastructure
 
@@ -190,7 +187,8 @@ Multimodal models are usually extended from large language models.
 | OceanBase Database is a distributed relational database developed by Ant Group, based on Paxos and a distributed architecture for HA and linear scaling. | [oceanbase](https://github.com/oceanbase/oceanbase) | New-SQL-DB | [Mulan PubL v2](#protocol-document-links)             |
 | Qdrant is a vector database written in Rust for distributed deployments.                                                                        | [qdrant](https://github.com/qdrant/qdrant)          | Vector-DB  | [Apache 2.0](#protocol-document-links)                |
 | Milvus is a vector database written in Go and C++ for distributed deployments.                                                                  | [milvus](https://github.com/milvus-io/milvus)       | Vector-DB  | [Apache 2.0](#protocol-document-links)                |
-| An in-memory KV database and caching system for caching, messaging, and data structure workloads.                                              | [redis](https://github.com/redis/redis)             | KV-Cache   | [Proprietary License](https://github.com/redis/redis) |
+| An open-source column-oriented DBMS for real-time analytics, executing SQL queries over columnar storage with data compression, supporting distributed deployments, primarily implemented in C++. | [clickhouse](https://github.com/ClickHouse/ClickHouse) | OLAP-DB | [Apache 2.0](#protocol-document-links) |
+| An in-memory data structure server forked from Redis 7.2.4 and hosted by the Linux Foundation (LF Projects), compatible with the Redis protocol and API, supporting Lua, Sentinel, Cluster, and the module API. | [valkey](https://github.com/valkey-io/valkey)       | KV-Cache   | [BSD 3](#protocol-document-links)         |
 
 ## Delivery and Image Building
 
@@ -206,6 +204,12 @@ Multimodal models are usually extended from large language models.
 | -------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ | ------------------------------------ |
 | containerd is a container runtime responsible for image pulling, container lifecycle management, and execution. It can be used as the runtime for Kubernetes nodes and also in local or single-node environments.                            | [containerd](https://github.com/containerd/containerd) | [Apache 2.0](#protocol-document-links) |
 | BuildKit is an image build toolkit supporting cache reuse, parallel builds, multi-platform builds, and rootless execution. Docker Engine 23.0 and later use Buildx/BuildKit by default for `docker build`. | [buildkit](https://github.com/moby/buildkit)           | [Apache 2.0](#protocol-document-links) |
+
+## Toolkits
+
+| Project Summary                                                                                                                                                              | Link (Click to Visit)              | License                                        |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- | ---------------------------------------------- |
+| Open-source audio/video codec and processing framework implemented in C, comprising the libavcodec, libavformat, libavutil, libavfilter, libavdevice, libswresample and libswscale libraries plus the ffmpeg, ffplay and ffprobe command-line tools, covering mainstream container formats, streaming protocols and codecs. | [ffmpeg](https://github.com/FFmpeg/FFmpeg) | [LGPL 2.1+ / GPL 2.0+](#protocol-document-links) |
 
 # Language Capabilities
 
@@ -234,6 +238,9 @@ Multimodal models are usually extended from large language models.
 | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ | ------------------------------------ |
 | Diffusers is Hugging Face's open-source training and inference toolkit for diffusion models, covering images, audio, and 3D workloads. | [diffusers](https://github.com/huggingface/diffusers)  | [Apache 2.0](#protocol-document-links) |
 | Unsloth is a local training and inference toolkit for open models, supporting fine-tuning, reinforcement learning, export, and unified local interfaces, with a focus on low VRAM usage and training efficiency. | [unsloth](https://github.com/unslothai/unsloth)        | [Multiple Licenses](https://github.com/unslothai/unsloth) |
+| vLLM is a large language model inference and serving engine originating from UC Berkeley's Sky Computing Lab, managing the KV cache with PagedAttention and supporting continuous batching, chunked prefill, prefix caching, speculative decoding, and FP8, INT4, GPTQ, AWQ, and GGUF quantization, covering 200+ Hugging Face model architectures on NVIDIA, AMD, and Intel hardware with an OpenAI-compatible API. | [vllm](https://github.com/vllm-project/vllm) | [Apache 2.0](#protocol-document-links) |
+| SGLang is an LLM and multimodal model serving framework from LMSYS, using RadixAttention prefix caching and a zero-overhead CPU scheduler, supporting prefill-decode disaggregation, speculative decoding, structured output, and FP8, INT4, AWQ, and GPTQ quantization on NVIDIA, AMD, Intel, TPU, and Ascend hardware, compatible with the OpenAI API. | [sglang](https://github.com/sgl-project/sglang) | [Apache 2.0](#protocol-document-links) |
+| LMDeploy is an OpenMMLab toolkit for compressing, deploying, and serving LLMs, built on TurboMind and PyTorch inference engines, supporting persistent batching, blocked KV cache, 4-bit/AWQ weight quantization and KV cache quantization, tensor parallelism, CUDA graphs, and prefill-decode disaggregation on NVIDIA GPUs and Huawei Ascend, covering InternLM, Qwen, Llama, and DeepSeek models. | [lmdeploy](https://github.com/InternLM/lmdeploy) | [Apache 2.0](#protocol-document-links) |
 
 #### Algorithm Frameworks
 
@@ -261,14 +268,7 @@ Multimodal models are usually extended from large language models.
 | A Go library for parsing between maps and structs.                                                                   | [mapstructure](https://github.com/mitchellh/mapstructure) | [MIT](#protocol-document-links)      |
 | Sonic is a JSON library using JIT and SIMD acceleration to provide serialization and deserialization without code generation.                    | [sonic](https://github.com/bytedance/sonic)               | [Apache 2.0](#protocol-document-links) |
 | An in-memory cache library that supports configuring a maximum cache size.                                           | [bigcache](https://github.com/allegro/bigcache)           | [Apache 2.0](#protocol-document-links) |
-| An in-memory cache library with simpler configuration than BigCache.                                                 | [freecache](https://github.com/coocood/freecache)         | [MIT](#protocol-document-links)      |
 | A lock-free and concurrency-safe map.                                                                                | [haxmap](https://github.com/alphadose/haxmap)             | [MIT](#protocol-document-links)      |
-
-### Toolkits
-
-| Project Summary                                                                                                                                                             | Link (Click to Visit)                             | License                              |
-|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------|--------------------------------------|
-| A Go implementation of ffmpeg-python. [FFmpeg](https://github.com/FFmpeg/FFmpeg) is an open-source audio and video processing library written in C.                       | [ffmpeg-go](https://github.com/u2takey/ffmpeg-go) | [Apache 2.0](#protocol-document-links) |
 
 ### HTTP
 
@@ -342,5 +342,6 @@ Multimodal models are usually extended from large language models.
 | CreativeML Open RAIL++-M | https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/blob/main/LICENSE.md |
 | OFL1.1 2007              | https://openfontlicense.org/documents/OFL.txt                                        |
 | Mulan PubL v2            | https://license.coscl.org.cn/MulanPubL-2.0                                            |
-| CC BY-NC 4.0             | https://creativecommons.org/licenses/by-nc/4.0/                                      |
-| FISH AUDIO RESEARCH LICENSE | https://github.com/fishaudio/fish-speech/blob/main/LICENSE                        |
+| Qwen Research License    | https://huggingface.co/Qwen/Qwen-Image-2.1/blob/main/LICENSE                       |
+| MiniMax H3 Community License | https://huggingface.co/MiniMaxAI/MiniMax-H3/blob/main/LICENSE                  |
+| LGPL 2.1+ / GPL 2.0+   | https://github.com/FFmpeg/FFmpeg/blob/master/LICENSE.md                                      |

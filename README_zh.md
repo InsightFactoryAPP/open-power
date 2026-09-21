@@ -36,7 +36,7 @@
       * [音色转换](#音色转换)
       * [文字转语音](#文字转语音)
     * [编码代理](#编码代理)
-    * [其它](#其它)
+    * [OCR](#ocr)
 * [基础设施](#基础设施)
   * [权限控制](#权限控制)
   * [网络控制](#网络控制)
@@ -44,6 +44,7 @@
   * [交付与镜像构建](#交付与镜像构建)
     * [CD](#cd)
     * [容器能力](#容器能力)
+  * [工具库](#工具库)
 * [语言能力](#语言能力)
   * [跨语言框架](#跨语言框架)
     * [RPC](#rpc)
@@ -56,7 +57,6 @@
     * [AI能力](#ai能力-1)
       * [LLM应用框架](#llm应用框架-1)
     * [基础能力](#基础能力)
-    * [工具库](#工具库)
     * [HTTP](#http)
       * [Server](#server)
       * [Client](#client)
@@ -98,15 +98,13 @@
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | --------------------------------------------------- |
 | stable diffusion v1-5 是经典图像生成基座，具备成熟的 WebUI / ComfyUI / LoRA / ControlNet 生态支持。                                                              | [stable-diffusion v1-5](https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5)     | [CreativeML Open RAIL-M](#Protocol-document-link)   |
 | stable-diffusion-xl-base-1.0 是经典高清图像生成基座，在画质、分辨率与社区支持之间保持较好平衡。                                                                  | [stable-diffusion-xl-base-1.0](https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0) | [CreativeML Open RAIL++-M](#Protocol-document-link) |
-| HunyuanImage-3.0 是原生多模态自回归图像生成模型，技术路线较新，部署资源需求较高。                                                                                 | [HunyuanImage-3.0](https://github.com/Tencent-Hunyuan/HunyuanImage-3.0)                         | [独立协议](https://github.com/Tencent-Hunyuan/HunyuanImage-3.0/blob/main/LICENSE) |
-| HiDream-I1 是 17B 参数文生图基座模型，基于 Sparse DiT 架构，支持中英双语提示，提供 Full / Dev / Fast 多版本。                                                     | [HiDream-I1](https://github.com/HiDream-ai/HiDream-I1)                                          | [MIT](#Protocol-document-link)                       |
+| 阿里推出的文生图与图像编辑统一模型，视觉生成部分为 7B 参数、32 层单流 DiT 架构，支持文字渲染、原生 RGBA 透明背景生成与最多 10 张参考图的编辑，最高输出 2752×1536 分辨率。 | [Qwen-Image-2.1](https://huggingface.co/Qwen/Qwen-Image-2.1) | [Qwen Research License](#Protocol-document-link) |
 
 ##### 视频生成
 
 | 项目简要                                                                                                           | 地址（点击访问）                          | 使用许可证                            |
 | ------------------------------------------------------------------------------------------------------------------ | ----------------------------------------- | ------------------------------------- |
-| 阿里开源的视频生成模型系列，提供多个版本。 | [Wan-Video](https://github.com/Wan-Video) | [Apache 2.0](#Protocol-document-link) |
-| LTX-Video 是基于 DiT 架构的视频生成模型，支持图生视频、多关键帧、视频扩展与视频到视频转换，最高可达 4K 分辨率 50 FPS。 | [LTX-Video](https://github.com/Lightricks/ltx-video) | [Apache 2.0](#Protocol-document-link) |
+| MiniMax 推出的音视频同步生成模型，基于 33B 参数稠密单流 Transformer，支持文生视频、首尾帧生视频与最多 12 个混合参考文件的全模态参考生成，输出 4–15 秒、24 FPS、最高 2K 分辨率，支持 11 种语言对白。 | [MiniMax-H3](https://huggingface.co/MiniMaxAI/MiniMax-H3) | [MiniMax H3 Community License](#Protocol-document-link) |
 
 ## AI协议与标准
 
@@ -117,6 +115,7 @@
 | Model Context Protocol（MCP）是面向 LLM 应用与外部数据源、工具集成的开放协议，定义统一的上下文交换与客户端/服务端交互方式，并形成了规范、SDK 与服务端生态。 | AI协议标准 | [MCP](https://github.com/modelcontextprotocol/modelcontextprotocol) | [MIT](#Protocol-document-link)        |
 | Agent2Agent（A2A）是面向智能体应用的开放通信协议，支持不同框架与厂商构建的 Agent 相互发现能力、协商交互方式并协作完成长期任务。 | AI协议标准 | [A2A](https://github.com/a2aproject/A2A) | [Apache 2.0](#Protocol-document-link) |
 | Agent Client Protocol（ACP）是标准化代码编辑器与编码 Agent 之间通信的协议，提供 Kotlin、Java、Python、Rust、TypeScript 多语言 SDK。 | AI协议标准 | [ACP](https://github.com/agentclientprotocol/agent-client-protocol) | [Apache 2.0](#Protocol-document-link) |
+| Agent Skills 是打包智能体能力的开放规范，最初由 Anthropic 提出；基本单元为包含 SKILL.md 的文件夹，携带 name/description 元数据与指令，可选附带 scripts、references、assets，按发现、激活、执行的渐进披露方式加载。 | AI协议标准 | [Agent Skills](https://github.com/agentskills/agentskills) | [Apache 2.0](#Protocol-document-link) |
 
 ## AI工作流
 
@@ -150,22 +149,20 @@
 
 | 项目简要                                   | 主要功能   | 地址（点击访问）                                     | 使用许可证                            |
 | ------------------------------------------ | ---------- | ---------------------------------------------------- | ------------------------------------- |
-| 开源文字转语音项目，兼顾效果与生态。       | 文字转语音 | [GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS) | [MIT](#Protocol-document-link)        |
-| Voxtral-4B-TTS 是 Mistral 开源的多语言文字转语音模型，支持 9 种语言与 3 秒参考音频的零样本语音克隆，延迟约 70ms。 | 文字转语音 | [Voxtral-4B-TTS](https://huggingface.co/mistralai/Voxtral-4B-TTS-2603) | [CC BY-NC 4.0](#Protocol-document-link) |
-| Fish Speech（Fish Audio S2 Pro）是基于 Dual-AR 架构与 RL 对齐的多语言文字转语音系统，支持自然语言语调控制与 80 余种语言的多说话人生成。 | 文字转语音 | [fish-speech](https://github.com/fishaudio/fish-speech) | [FISH AUDIO RESEARCH LICENSE](https://github.com/fishaudio/fish-speech/blob/main/LICENSE) |
+| 阿里开源的文字转语音模型，基于 Qwen3-TTS-Tokenizer-12Hz 离散多码本语言模型与轻量非 DiT 架构，支持 3 秒参考音频零样本音色克隆、流式生成（首包延迟低至 97ms）与中、英、日、韩、德、法、俄、葡、西、意十种语言。 | 文字转语音 | [Qwen3-TTS-12Hz-1.7B-Base](https://huggingface.co/Qwen/Qwen3-TTS-12Hz-1.7B-Base) | [Apache 2.0](#Protocol-document-link) |
 
 ### 编码代理
 
 | 项目简要                                                                                                                                      | 主要功能 | 地址（点击访问）                                    | 使用许可证                            |
 | --------------------------------------------------------------------------------------------------------------------------------------------- | -------- | --------------------------------------------------- | ------------------------------------- |
-| OpenCode 是开源 AI 编码代理，强调终端体验与客户端/服务端架构，适合在本地环境中进行交互式编码、执行与远程驱动。                                | AI编码代理 | [opencode](https://github.com/anomalyco/opencode)   | [MIT](#Protocol-document-link)        |
+| Pi 是 AI 代理工具集与编码代理 harness，TypeScript monorepo 将统一多提供商 LLM API、代理运行时、差分渲染 TUI 与编码代理 CLI 拆分为独立包。 | AI编码代理 | [pi](https://github.com/earendil-works/pi) | [MIT](#Protocol-document-link) |
+| DeepSeek 开源的代理 harness（CLI 为 dsh），采用一切皆插件的架构，内置 Web UI，插件生态经 dsh-plugin 主题聚合。 | AI编码代理 | [deepseek-harness](https://github.com/deepseek-ai/deepseek-harness) | [MIT](#Protocol-document-link) |
 
-### 其它
+### OCR
 
-| 项目简要                                                                                                  | 主要功能  | 地址（点击访问）                                                           | 使用许可证                            |
-| --------------------------------------------------------------------------------------------------------- | --------- | -------------------------------------------------------------------------- | ------------------------------------- |
-| light-ocr 是面向 Node.js 与 C++ 的快速离线 OCR 工具包，基于 PP-OCRv6 与 ONNX Runtime，并可选使用 CoreML 和 WebGPU 加速。 | OCR | [light-ocr](https://github.com/arcships/light-ocr) | [Apache 2.0](#Protocol-document-link) |
-| 类 ChatGPT Web 应用项目，适合基于 API 快速搭建通用对话界面。 | 类ChatGPT | [open-webui](https://github.com/open-webui/open-webui)                     | [MIT](#Protocol-document-link)        |
+| 项目简要 | 主要功能 | 地址（点击访问） | 使用许可证 |
+| -------- | -------- | ---------------- | ---------- |
+| light-ocr 是面向 Node.js 与 C++ 的快速离线 OCR 工具包，基于 PP-OCRv6 与自带 OCR 运行时，并可选使用 Core ML 和 WebGPU 硬件加速。 | OCR | [light-ocr](https://github.com/arcships/light-ocr) | [Apache 2.0](#Protocol-document-link) |
 
 # 基础设施
 
@@ -190,7 +187,8 @@
 | OceanBase Database 是一个分布式关系型数据库。完全由蚂蚁集团自主研发。 OceanBase 基于 Paxos 协议以及分布式架构，实现了高可用和线性扩展。 | [oceanbase](https://github.com/oceanbase/oceanbase) | New-SQL-DB | [Mulan PubL v2](#Protocol-document-link)   |
 | Qdrant 是一个 Rust 编写的向量数据库，具备分布式生产能力。                                                                               | [qdrant](https://github.com/qdrant/qdrant)          | Vector-DB  | [Apache 2.0](#Protocol-document-link)      |
 | Milvus 是一个由 Go 和 C++ 编写的向量数据库，具备分布式生产能力。                                                                        | [milvus](https://github.com/milvus-io/milvus)       | Vector-DB  | [Apache 2.0](#Protocol-document-link)      |
-| 高性能内存 KV 数据库与缓存系统，广泛用于缓存、消息与数据结构场景。                                                                     | [redis](https://github.com/redis/redis)             | KV-Cache   | [独立协议](https://github.com/redis/redis) |
+| 开源列式实时分析数据库管理系统，以列存储与数据压缩支撑 SQL 查询和实时报表分析，支持分布式部署，主体为 C++ 实现。 | [clickhouse](https://github.com/ClickHouse/ClickHouse) | OLAP-DB | [Apache 2.0](#Protocol-document-link) |
+| 从 Redis 7.2.4 分叉、由 Linux 基金会（LF Projects）托管的内存数据结构服务器，兼容 Redis 协议与 API，支持 Lua、Sentinel、Cluster 与 Module API。 | [valkey](https://github.com/valkey-io/valkey)       | KV-Cache   | [BSD 3](#Protocol-document-link)          |
 
 ## 交付与镜像构建
 
@@ -206,6 +204,12 @@
 | ----------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ | ------------------------------------- |
 | containerd 是容器运行时，负责镜像拉取、容器生命周期管理与执行，常作为 Kubernetes 节点运行时，也可独立用于本地或单机环境；本身不负责镜像构建。                   | [containerd](https://github.com/containerd/containerd) | [Apache 2.0](#Protocol-document-link) |
 | BuildKit 是现代镜像构建工具链，支持高效缓存、并行构建、多平台构建和无 root 运行；Docker Engine 23.0 起，`docker build` 默认基于 Buildx/BuildKit。               | [buildkit](https://github.com/moby/buildkit)           | [Apache 2.0](#Protocol-document-link) |
+
+## 工具库
+
+| 项目简要                                                                                                              | 地址（点击访问）                      | 使用许可证                                 |
+| --------------------------------------------------------------------------------------------------------------------- | ------------------------------------- | ------------------------------------------ |
+| 开源音视频编解码与处理框架，以 C 语言实现，包含 libavcodec、libavformat、libavutil、libavfilter、libavdevice、libswresample、libswscale 七个库与 ffmpeg、ffplay、ffprobe 命令行工具，覆盖主流容器格式、流协议与编解码器。 | [ffmpeg](https://github.com/FFmpeg/FFmpeg) | [LGPL 2.1+ / GPL 2.0+](#Protocol-document-link) |
 
 # 语言能力
 
@@ -234,6 +238,9 @@
 | ---------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- | ------------------------------------- |
 | Huggingface 开源的 Diffusers 是扩散模型训练与推理工具库，覆盖图像、音频与 3D 等场景。                             | [diffusers](https://github.com/huggingface/diffusers) | [Apache 2.0](#Protocol-document-link) |
 | Unsloth 是面向开源模型本地训练与推理的工具链，支持微调、强化学习、导出与统一本地界面，强调低显存占用与训练效率。   | [unsloth](https://github.com/unslothai/unsloth)        | [多种协议](https://github.com/unslothai/unsloth) |
+| vLLM 是源自 UC Berkeley Sky Computing Lab 的大语言模型推理与服务引擎，以 PagedAttention 管理 KV 缓存，支持连续批处理、分块预填充、前缀缓存、投机解码与 FP8、INT4、GPTQ、AWQ、GGUF 等量化，覆盖 200 余种 Hugging Face 模型架构，运行于 NVIDIA、AMD、Intel 硬件并提供 OpenAI 兼容 API。 | [vllm](https://github.com/vllm-project/vllm) | [Apache 2.0](#Protocol-document-link) |
+| SGLang 是 LMSYS 推出的大语言与多模态模型推理服务框架，采用 RadixAttention 前缀缓存与零开销 CPU 调度器，支持预填充-解码分离、投机解码、结构化输出与 FP8、INT4、AWQ、GPTQ 量化，运行于 NVIDIA、AMD、Intel、TPU 与昇腾硬件，兼容 OpenAI API。 | [sglang](https://github.com/sgl-project/sglang) | [Apache 2.0](#Protocol-document-link) |
+| LMDeploy 是 OpenMMLab 团队推出的大语言模型压缩、部署与服务工具集，内置 TurboMind 与 PyTorch 两种推理引擎，支持持久批处理、块式 KV 缓存、4bit/AWQ 权重量化与 KV 缓存量化、张量并行、CUDA Graph 与预填充-解码分离，运行于 NVIDIA GPU 与华为昇腾，支持 InternLM、Qwen、Llama、DeepSeek 等模型。 | [lmdeploy](https://github.com/InternLM/lmdeploy) | [Apache 2.0](#Protocol-document-link) |
 
 #### 算法框架
 
@@ -261,14 +268,7 @@
 | Go 语言 map 与 struct 相互解析的库。         | [mapstructure](https://github.com/mitchellh/mapstructure) | [MIT](#Protocol-document-link)        |
 | Sonic 是高性能 JSON 库，通过 JIT 与 SIMD 加速，在无需代码生成的前提下提供高效的序列化与反序列化能力。 | [sonic](https://github.com/bytedance/sonic)               | [Apache 2.0](#Protocol-document-link) |
 | 内存缓存库，支持配置最大缓存大小。           | [bigcache](https://github.com/allegro/bigcache)           | [Apache 2.0](#Protocol-document-link) |
-| 内存缓存库，相较于 bigcache 配置更简单。     | [freecache](https://github.com/coocood/freecache)         | [MIT](#Protocol-document-link)        |
 | 无锁且并发安全的Map                          | [haxmap](https://github.com/alphadose/haxmap)             | [MIT](#Protocol-document-link)        |
-
-### 工具库
-
-| 项目简要                                                                                                          | 地址（点击访问）                                  | 使用许可证                            |
-| ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- | ------------------------------------- |
-| ffmpeg-python 的 Go 语言实现。[FFmpeg](https://github.com/FFmpeg/FFmpeg) 是一个 C 语言开发的知名开源音视频数据处理库。 | [ffmpeg-go](https://github.com/u2takey/ffmpeg-go) | [Apache 2.0](#Protocol-document-link) |
 
 ### HTTP
 
@@ -342,5 +342,6 @@
 | CreativeML Open RAIL++-M | https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/blob/main/LICENSE.md |
 | OFL1.1 2007              | https://openfontlicense.org/documents/OFL.txt                                        |
 | Mulan PubL v2            | https://license.coscl.org.cn/MulanPubL-2.0                                            |
-| CC BY-NC 4.0             | https://creativecommons.org/licenses/by-nc/4.0/                                      |
-| FISH AUDIO RESEARCH LICENSE | https://github.com/fishaudio/fish-speech/blob/main/LICENSE                        |
+| Qwen Research License    | https://huggingface.co/Qwen/Qwen-Image-2.1/blob/main/LICENSE                       |
+| MiniMax H3 Community License | https://huggingface.co/MiniMaxAI/MiniMax-H3/blob/main/LICENSE                  |
+| LGPL 2.1+ / GPL 2.0+   | https://github.com/FFmpeg/FFmpeg/blob/master/LICENSE.md                                      |
