@@ -1,5 +1,25 @@
 # Changelog
 
+## 20260921
+
+1. Removed HunyuanImage-3.0 from image generation section
+2. Removed HiDream-I1 from image generation section
+3. Added Qwen-Image-2.1 to image generation section and Qwen Research License to license source links
+4. Removed Wan-Video and LTX-Video from video generation section
+5. Added MiniMax-H3 to video generation section and MiniMax H3 Community License to license source links
+6. Removed GPT-SoVITS, Voxtral-4B-TTS and Fish Speech from text-to-speech section, added Qwen3-TTS-12Hz-1.7B-Base
+7. Removed now-unused CC BY-NC 4.0 and FISH AUDIO RESEARCH LICENSE rows from license source links
+8. Removed OpenCode from coding agents section
+9. Added Pi and DeepSeek Harness to coding agents section
+10. Removed open-webui and the now-empty "Others/其它" section, including its TOC entries
+11. Added Agent Skills to the protocols section
+12. Replaced the redis entry with Valkey in the KV-Cache section
+13. Added ClickHouse to the data storage and caching section
+14. Removed freecache from Go libraries section
+15. Removed ffmpeg-go and the now-empty "Toolkits/工具库" section, including its TOC entries
+16. Added vLLM, SGLang and LMDeploy to the model training and inference tools section
+17. Added FFmpeg to a new language-neutral "Toolkits/工具库" section under Infrastructure, with an LGPL 2.1+ / GPL 2.0+ row in license source links
+
 ## 20260608
 
 1. Removed Qwen-Image from image generation section
